@@ -6,7 +6,7 @@ import Average from 'components/atoms/Average/Average.js';
 
 function UserListItem({ userData: { average, name, attendance = '0%' } }) {
   return (
-    <Wrapper key={name}>
+    <Wrapper>
       <Average average={average} />
       <div>
         <StyledName>{name}</StyledName>

@@ -21,7 +21,7 @@ export const users = [
   },
   {
     name: 'Kamil Lekki',
-    attendance: '54%',
+    attendance: '74%',
     average: '2.5',
   },
   {

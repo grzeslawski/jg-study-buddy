@@ -12,9 +12,18 @@ export const StyledButton = styled.button`
   color: #fff;
   border: none;
   border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 
   svg {
     width: 12px;
     height: 12px;
+  }
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.error};
   }
 `;
