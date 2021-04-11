@@ -1,13 +1,13 @@
-import React from 'react';
-import { users } from 'data/users.js';
+import React, { useState, useEffect } from 'react';
+import { users as usersData } from 'data/users.js';
 import UserListItem from 'components/molecules/UsersListItem/UserListItem';
 import { Wrapper, StyledList } from './UsersList.styles';
 
 const mockAPI = (success) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (users) {
-        resolve([...users]);
+      if (usersData) {
+        resolve([...usersData]);
       } else {
         reject({ message: 'Error' });
       }
@@ -15,47 +15,35 @@ const mockAPI = (success) => {
   });
 };
 
-class UsersList extends React.Component {
-  state = {
-    users: [],
-    isLoading: false,
-  };
+const UsersList = () => {
+  const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState([]);
 
-  detectMouseMove = () => {};
-
-  componentDidMount() {
-    this.setState({ isLoading: true });
+  useEffect(() => {
+    setIsLoading(true);
     mockAPI()
       .then((data) => {
-        this.setState({ users: data, isLoading: false });
+        setIsLoading(false);
+        setUsers(data);
       })
       .catch((err) => console.log(err));
-  }
+  }, []);
 
-  deleteUser = (name) => {
-    const filteredUsers = this.state.users.filter((user) => user.name !== name);
-
-    this.setState({ users: filteredUsers });
+  const deleteUser = (name) => {
+    const filteredUsers = users.filter((user) => user.name !== name);
+    setUsers(filteredUsers);
   };
 
-  componentDidUpdate(prevState) {
-    if (prevState.isLoading !== this.state.isLoading) {
-      console.log('Loading state has changed');
-    }
-  }
-
-  render() {
-    return (
-      <Wrapper>
-        <StyledList>
-          <h1>{this.state.isLoading ? 'Loading...' : 'Users List'}</h1>
-          {this.state.users.map((userData) => (
-            <UserListItem deleteUser={this.deleteUser} key={userData.name} userData={userData} />
-          ))}
-        </StyledList>
-      </Wrapper>
-    );
-  }
-}
+  return (
+    <Wrapper>
+      <StyledList>
+        <h1>{isLoading ? 'Loading...' : 'Users List'}</h1>
+        {users.map((userData) => (
+          <UserListItem deleteUser={deleteUser} key={userData.name} userData={userData} />
+        ))}
+      </StyledList>
+    </Wrapper>
+  );
+};
 
 export default UsersList;
