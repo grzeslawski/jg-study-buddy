@@ -1,5 +1,5 @@
 {
-  "extends": ["react-app", "react-app/jest", "plugin:prettier/recommended"],
+  "extends": ["react-app", "react-app/jest", "plugin:prettier/recommended", "prettier"],
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": ["warn", { "singleQuote": true, "printWidth": 150 }],
@@ -10,6 +10,5 @@
     "node": true,
     "es6": true
   },
-  "parser": "babel-eslint",
-  "cache": false
+  "parser": "babel-eslint"
 }
