@@ -15,4 +15,10 @@ html {
 body, a, button {
     font-family: 'Montserrat', sans-serif;
 }
+
+img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
 `;
