@@ -1,10 +1,9 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { render, screen } from 'test-utils';
 import '@testing-library/jest-dom/extend-expect';
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
 import NewsSection, { query } from 'components/templates/NewsSection/NewsSection';
-import { renderWithProviders } from 'helpers/renderWithProviders';
 
 const mock = new MockAdapter(axios);
 
@@ -15,7 +14,7 @@ describe('News Section', () => {
 
   it('Displays error when the article are not loaded correctly', async () => {
     mock.onPost('https://graphql.datocms.com/', { query }).reply(500);
-    renderWithProviders(<NewsSection />);
+    render(<NewsSection />);
     await screen.findByText(/Sorry/);
   });
 
@@ -25,12 +24,12 @@ describe('News Section', () => {
         allArticles: [{ id: 1, title: 'Test', category: 'Test', content: 'Test' }],
       },
     });
-    renderWithProviders(<NewsSection />);
+    render(<NewsSection />);
     await screen.findAllByText(/Test/);
   });
 
   it('Display the loading...', () => {
-    renderWithProviders(<NewsSection />);
+    render(<NewsSection />);
     screen.getByText('Loading...');
   });
 });
