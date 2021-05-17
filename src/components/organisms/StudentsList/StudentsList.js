@@ -5,24 +5,24 @@ import { Title } from 'components/atoms/Title/Title';
 import { useStudents } from 'hooks/useStudents';
 import { useParams } from 'react-router';
 
-const StudentsList = () => {
+const StudentsList = ({ handleOpenStudentDetails }) => {
   const [students, setStudents] = useState([]);
   const { id } = useParams();
-  const { getStudents } = useStudents();
+  const { getStudentsByGroup } = useStudents();
 
   useEffect(() => {
     (async () => {
-      const students = await getStudents(id);
+      const students = await getStudentsByGroup(id);
       setStudents(students);
     })();
-  }, [getStudents, id]);
+  }, [getStudentsByGroup, id]);
 
   return (
     <>
       <Title>Students list</Title>
       <StyledList>
         {students.map((usersData) => (
-          <StudentsListItem key={usersData.name} userData={usersData} />
+          <StudentsListItem onClick={() => handleOpenStudentDetails(usersData.id)} key={usersData.name} userData={usersData} />
         ))}
       </StyledList>
     </>

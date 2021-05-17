@@ -5,6 +5,7 @@ export const Wrapper = styled.li`
   display: flex;
   align-items: center;
   position: relative;
+  cursor: pointer;
 
   &:not(:last-child)::after {
     content: '';
@@ -16,33 +17,19 @@ export const Wrapper = styled.li`
   }
 `;
 
-export const StyledAverage = styled.div`
-  margin-right: 10px;
-  width: 35px;
-  height: 35px;
-  border-radius: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: ${({ theme }) => theme.fontSize.s};
-  color: ${({ theme }) => theme.colors.white};
-  font-weight: bold;
-  background-color: ${({ theme, value }) => {
-    if (value > 4) return theme.colors.success;
-    if (value > 3) return theme.colors.warning;
-    if (value > 1) return theme.colors.error;
-    return theme.colors.grey;
-  }};
-`;
-
-export const StyledName = styled.p`
-  font-size: ${({ theme }) => theme.fontSize.l};
-  font-weight: 700;
-  color: ${({ theme }) => theme.colors.darkGrey};
-`;
-
-export const StyledAttendance = styled.p`
-  font-size: ${({ theme }) => theme.fontSize.m};
-  font-weight: 400;
-  color: ${({ theme }) => theme.colors.darkGrey};
+export const StyledInfo = styled.div`
+  padding: 10px 20px;
+  p {
+    margin: 0;
+    color: ${({ theme }) => theme.colors.darkGrey};
+  }
+  p:first-child {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: ${({ theme }) => theme.fontSize.l};
+  }
+  p:last-child {
+    font-size: ${({ theme }) => theme.fontSize.m};
+  }
 `;
