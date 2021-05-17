@@ -1,16 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Wrapper, StyledAverage, StyledName, StyledAttendance } from './StudentsListItem.styles';
+import { StyledInfo, Wrapper } from './StudentsListItem.styles';
+import DeleteButton from 'components/atoms/DeleteButton/DeleteButton';
+import { Average } from 'components/atoms/Average/Average';
 import { UserShape } from 'types';
 
-const StudentsListItem = ({ userData: { average, name, attendance = '0%' } }) => {
+const StudentsListItem = ({ userData: { average, name, attendance = '0%' }, ...props }) => {
   return (
-    <Wrapper>
-      <StyledAverage value={average}>{average}</StyledAverage>
-      <div>
-        <StyledName>{name}</StyledName>
-        <StyledAttendance>attendance: {attendance}</StyledAttendance>
-      </div>
+    <Wrapper {...props}>
+      <Average value={average}>{average}</Average>
+      <StyledInfo>
+        <p>
+          {name}
+          <DeleteButton />
+        </p>
+        <p>attendance: {attendance}</p>
+      </StyledInfo>
     </Wrapper>
   );
 };
