@@ -39,6 +39,7 @@ export const StyledLink = styled(NavLink).attrs({ activeClassName })`
   margin: 15px 20px 15px auto;
   font-size: ${({ theme }) => theme.fontSize.m};
   position: relative;
+  cursor: pointer;
   transition: color 0.2s ease;
 
   &::after {
