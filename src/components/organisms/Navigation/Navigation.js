@@ -1,7 +1,10 @@
 import React from 'react';
 import { Logo, StyledLink, Wrapper } from 'components/organisms/Navigation/Navigation.styles';
+import { useAuth } from 'hooks/UseAuth';
 
 const Navigation = () => {
+  const auth = useAuth();
+
   return (
     <Wrapper>
       <Logo>
@@ -14,7 +17,7 @@ const Navigation = () => {
       <StyledLink exact to="/group">
         Dashboard
       </StyledLink>
-      <StyledLink as="a" onClick={() => localStorage.removeItem('token')}>
+      <StyledLink as="a" onClick={auth.signOut}>
         Logout
       </StyledLink>
     </Wrapper>
