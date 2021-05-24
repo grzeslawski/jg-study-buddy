@@ -16,6 +16,10 @@ body, a, button {
     font-family: 'Montserrat', sans-serif;
 }
 
+body {
+    overflow-y: hidden;
+}
+
 img {
     display: block;
     width: 100%;
