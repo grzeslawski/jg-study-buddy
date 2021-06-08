@@ -27,7 +27,7 @@ const AuthenticatedApp = () => {
   );
 };
 
-const UnauthenticatedApp = ({ handleSignIn, loginError }) => {
+const UnauthenticatedApp = () => {
   const auth = useAuth();
   const {
     register,
